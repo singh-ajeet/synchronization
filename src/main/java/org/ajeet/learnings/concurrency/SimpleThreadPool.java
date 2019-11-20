@@ -42,7 +42,7 @@ public final class SimpleThreadPool {
                     task.run();
                 }
             }
-          }
+        }
     }
 
     public void execute(Runnable task) throws InterruptedException {
@@ -50,7 +50,7 @@ public final class SimpleThreadPool {
             throw new InterruptedException("Pool is shutting down.");
         }
         tasksQueue.add(task);
-     }
+    }
 
     /**
      * Signal shutdown to running threads
@@ -83,8 +83,9 @@ public final class SimpleThreadPool {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       Thread.sleep(100);
-       List<Runnable> missedTasks = pool.shutdownNow();
-       System.out.println(missedTasks.size());
-    }
+        Thread.sleep(200);
+        pool.shutdown();
+ /*       List<Runnable> missedTasks = pool.shutdownNow();
+        System.out.println(missedTasks.size());
+*/    }
 }
