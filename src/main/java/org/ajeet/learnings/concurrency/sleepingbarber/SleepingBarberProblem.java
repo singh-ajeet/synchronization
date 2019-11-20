@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization.semaphore.sleepingbarber;
+package org.ajeet.learnings.concurrency.sleepingbarber;
 
 
 /**

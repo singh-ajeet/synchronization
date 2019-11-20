@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization.ratelimiter;
+package org.ajeet.learnings.concurrency.ratelimiter;
 
 import java.util.concurrent.*;
 

@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.memory;
+package org.ajeet.learnings.concurrency.memory;
 
 public final class MemoryLeak {
 

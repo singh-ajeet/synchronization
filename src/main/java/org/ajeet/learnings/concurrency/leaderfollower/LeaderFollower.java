@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization.semaphore.leaderfollower;
+package org.ajeet.learnings.concurrency.leaderfollower;
 
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;

@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.memory;
+package org.ajeet.learnings.concurrency.memory;
 
 public final class Test {
     int[] val = new int[100];

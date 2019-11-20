@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization;
+package org.ajeet.learnings.concurrency;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;

@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization.semaphore.parkinglot;
+package org.ajeet.learnings.concurrency.parkinglot;
 
 import java.util.concurrent.Semaphore;
 

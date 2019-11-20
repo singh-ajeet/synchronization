@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.synchronization.semaphore.sleepingbarber;
+package org.ajeet.learnings.concurrency.sleepingbarber;
 
 public final class Barber implements Runnable {
     @Override

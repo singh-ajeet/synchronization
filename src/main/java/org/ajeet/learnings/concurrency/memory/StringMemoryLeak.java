@@ -1,4 +1,4 @@
-package com.ajeetsingh.java.memory;
+package org.ajeet.learnings.concurrency.memory;
 
 import java.util.ArrayList;
 import java.util.List;
