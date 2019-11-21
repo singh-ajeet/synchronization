@@ -7,8 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Problem
- *
+ * Problem statement:
  * There is a bridge which is aligned along the east-west direction. This bridge is too narrow to allow cars to go in both directions.
  * Hence, cars must alternate going across the bridge.The bridge is also not strong enough to hold more than three cars at a time.
  * Find a solution to this problem which does not cause starvation. That is, cars that want to get across should eventually get across.
@@ -69,7 +68,7 @@ public final class SingleLaneBridge {
         private void enter(Vehicle vehicle, Direction direction) throws InterruptedException {
             try{
                 LOCK.lock();
-                while(!canCross(vehicle, direction)){
+                while(!canCross(direction)){
                     System.out.println("######====" + direction + "===="+ vehicle + "=====WAITING===######");
                     DIRECTION_SIGNALS[direction.ordinal()].await(); //Wait for signal to move
                 }
@@ -88,8 +87,8 @@ public final class SingleLaneBridge {
                 //Do Nothing
             }
         }
-        private boolean canCross(Vehicle vehicle, Direction direction) {
-            if (! currentDirection.equals(direction))
+        private boolean canCross(Direction direction) {
+            if (!currentDirection.equals(direction))
                 return false;
             else if (vehiclesOnBridge >= capacity)
                 return false;
@@ -117,6 +116,9 @@ public final class SingleLaneBridge {
         RIGHT;
     }
 
+    /**
+     * In real business scenarios this class will contain more attributes/fields
+     */
     private static class Vehicle {
         private final String number;
 
@@ -126,7 +128,7 @@ public final class SingleLaneBridge {
 
         @Override
         public String toString() {
-            return "Vehicle{" + number + '}';
+            return "Vehicle [" + number + ']';
         }
     }
 }

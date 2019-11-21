@@ -33,7 +33,7 @@ public final class ParkingLotSemaphore {
         }
     }
 
-    private static class Vehicle  implements Runnable {
+    private static class Vehicle  extends Thread {
         private final Parking parking;
         private final int vehicleNumber;
 
@@ -45,6 +45,12 @@ public final class ParkingLotSemaphore {
         @Override
         public void run() {
             park();
+            try {
+                //Just to replicate parked time.
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             unpark();
         }
 
@@ -77,7 +83,7 @@ public final class ParkingLotSemaphore {
         Parking parking = new Parking(4);
         System.out.println("Parking has capacity for " + parking.numOfParkingSlots + " vehicles");
         for (int i=1; i< 8; i++){
-            new Thread(new Vehicle(parking, i)).start();
+            new Vehicle(parking, i).start();
         }
     }
 }

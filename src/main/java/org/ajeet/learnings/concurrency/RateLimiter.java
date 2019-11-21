@@ -1,26 +1,27 @@
 package org.ajeet.learnings.concurrency;
 
 public final class RateLimiter {
+    //private static Random random = new Random(System.currentTimeMillis());
     private final int capacity;
     private final long refillPeriod;
-    private final int tockensPerMillis;
+    private final int slotsPerMillis;
 
-    private int availableTockens;
+    private int availableSlots;
     private long previousMillis;
 
     public RateLimiter(int capacity, long refillPeriod) {
         this.capacity = capacity;
         this.refillPeriod = refillPeriod;
-        this.tockensPerMillis = Math.round(capacity/refillPeriod);
-        this.availableTockens = capacity;
+        this.slotsPerMillis = Math.round(capacity/refillPeriod);
+        this.availableSlots = capacity;
         this.previousMillis = System.currentTimeMillis();
     }
 
-    public synchronized boolean hasToken(){
+    public synchronized boolean isSlotAvailable(){
         refill();
-        if(availableTockens <= 0)
+        if(availableSlots <= 0)
             return false;
-        availableTockens--;
+        availableSlots--;
         return true;
     }
 
@@ -28,7 +29,7 @@ public final class RateLimiter {
         long currentMillis = System.currentTimeMillis();
         if (currentMillis > previousMillis){
             int millis = (int) (currentMillis  - previousMillis);
-            availableTockens = Math.min(capacity, availableTockens + millis * tockensPerMillis);
+            availableSlots = Math.min(capacity, availableSlots + millis * slotsPerMillis);
             previousMillis = currentMillis;
         }
     }
