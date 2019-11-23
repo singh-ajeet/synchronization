@@ -2,9 +2,12 @@ package org.ajeet.learnings.concurrency;
 
 import java.util.concurrent.Semaphore;
 
+/**
+ * Semaphore based solution of bathroom unisex problem.
+ */
 public final class UnisexBathroomProblem {
     private final Semaphore BATHROOM_CAPACITY = new Semaphore(3);
-    //Count is required to reset inside gender to 0.
+    //Count is required to reset inside gender.
     private int insideCount;
     private Gender insideGender;
 
@@ -13,7 +16,7 @@ public final class UnisexBathroomProblem {
             while(insideGender == Gender.Female)
                 wait();
             BATHROOM_CAPACITY.acquire();
-            //insideCount++;
+            insideCount++;
             insideGender = Gender.Male;
         }
         System.out.println("Male is using bathroom ...");
@@ -21,7 +24,7 @@ public final class UnisexBathroomProblem {
         BATHROOM_CAPACITY.release();
 
         synchronized (this) {
-            //insideCount--;
+            insideCount--;
             if(insideCount == 0)
                 insideGender = null;
             this.notifyAll();
