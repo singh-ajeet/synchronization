@@ -10,6 +10,11 @@ public final class Barrier {
     }
 
     public synchronized void await() throws InterruptedException {
+        //To block re use of barrier, untill all threads are not succeeded from first run
+        while (count == totalThread) {
+            wait();
+        }
+
         count++;
         while (count < totalThread) {
             wait();
